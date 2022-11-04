@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
+import colors from 'colors'
 import connectDB from './config/db.js'
 
 // Load env vars
@@ -23,7 +24,9 @@ app.use('/api/v1/bootcamps', bootcamps)
 const PORT = process.env.PORT || 5000
 const server = app.listen(
   PORT,
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
+  console.log(
+    `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+  )
 )
 
 // Handle unhandled promise rejections
@@ -31,7 +34,7 @@ const server = app.listen(
 // so we are crashing over server, instead of using try-catch in db.js
 
 process.on('unhandledRejection', (err, promise) => {
-  console.log(`Error: ${err.message}`)
+  console.log(`Error: ${err.message}`.red)
   // close server & exit process
   server.close(() => process.exit(1))
 })
