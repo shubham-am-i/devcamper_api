@@ -1,4 +1,4 @@
-import mongoose, { Mongoose } from 'mongoose'
+import mongoose from 'mongoose'
 
 const BootcampSchema = mongoose.Schema({
   name: {
@@ -98,4 +98,4 @@ const BootcampSchema = mongoose.Schema({
   },
 })
 
-export default new Mongoose.model('Bootcamp', BootcampSchema)
+export default new mongoose.model('Bootcamp', BootcampSchema)

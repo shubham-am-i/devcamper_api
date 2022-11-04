@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 import colors from 'colors'
+import errorHandler from './middleware/error.js'
 import connectDB from './config/db.js'
 
 // Load env vars
@@ -18,8 +19,12 @@ const app = express()
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
+app.use(express.json())
+
 // Mount Routers
 app.use('/api/v1/bootcamps', bootcamps)
+
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 const server = app.listen(
