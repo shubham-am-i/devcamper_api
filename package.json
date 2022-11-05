@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "NODE_ENV=production node server",
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "import": "node seeder",
+    "destroy": "node seeder -d"
   },
   "author": "shubham",
   "license": "ISC",
