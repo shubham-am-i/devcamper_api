@@ -12,8 +12,8 @@ dotenv.config({ path: './config/config.env' })
 connectDB()
 
 // Route files
-import bootcamps from './routes/bootcampRoutes.js'
-import courses from './routes/courseRoutes.js'
+import bootcampRouter from './routes/bootcampRoutes.js'
+import courseRouter from './routes/courseRoutes.js'
 const app = express()
 
 // Middlewares
@@ -23,8 +23,8 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json())
 
 // Mount Routers
-app.use('/api/v1/bootcamps', bootcamps)
-app.use('/api/v1/courses', courses)
+app.use('/api/v1/bootcamps', bootcampRouter)
+app.use('/api/v1/courses', courseRouter)
 
 app.use(errorHandler)
 
