@@ -2,7 +2,7 @@
 import asyncHandler from 'express-async-handler'
 
 // local imports
-import Bootcamp from '../models/Bootcamp.js'
+import Bootcamp from '../models/bootcampModel.js'
 import ErrorResponse from '../utils/errorResponse.js'
 import geocoder from '../utils/geocoder.js'
 

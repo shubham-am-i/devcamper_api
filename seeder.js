@@ -13,8 +13,8 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // Load models
-import Bootcamp from './models/Bootcamp.js'
-import Course from './models/Course.js'
+import Bootcamp from './models/bootcampModel.js'
+import Course from './models/courseModel.js'
 
 // connect to DB
 mongoose.connect(process.env.MONGO_URI, {

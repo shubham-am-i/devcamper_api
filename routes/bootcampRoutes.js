@@ -6,7 +6,7 @@ import {
   updateBootcamp,
   deleteBootcamp,
   getBootcampsInRadius,
-} from '../controllers/bootcamps.js'
+} from '../controllers/bootcampController.js'
 const router = express.Router()
 
 router.route('/').get(getBootcamps).post(createBootcamp)

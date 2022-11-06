@@ -12,7 +12,7 @@ dotenv.config({ path: './config/config.env' })
 connectDB()
 
 // Route files
-import bootcamps from './routes/bootcamps.js'
+import bootcamps from './routes/bootcampRoutes.js'
 const app = express()
 
 // Middlewares
