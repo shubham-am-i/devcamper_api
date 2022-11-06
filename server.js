@@ -13,6 +13,7 @@ connectDB()
 
 // Route files
 import bootcamps from './routes/bootcampRoutes.js'
+import courses from './routes/courseRoutes.js'
 const app = express()
 
 // Middlewares
@@ -23,6 +24,7 @@ app.use(express.json())
 
 // Mount Routers
 app.use('/api/v1/bootcamps', bootcamps)
+app.use('/api/v1/courses', courses)
 
 app.use(errorHandler)
 
