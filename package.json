@@ -7,8 +7,8 @@
   "scripts": {
     "start": "NODE_ENV=production node server",
     "dev": "nodemon server",
-    "import": "node seeder",
-    "destroy": "node seeder -d"
+    "i": "node seeder",
+    "d": "node seeder -d"
   },
   "author": "shubham",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
+    "express-fileupload": "^1.4.0",
     "mongoose": "^6.7.1",
     "morgan": "^1.10.0",
     "node-geocoder": "^4.2.0",

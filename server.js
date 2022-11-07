@@ -2,11 +2,18 @@ import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 import colors from 'colors'
+import fileupload from 'express-fileupload'
 import errorHandler from './middleware/error.js'
 import connectDB from './config/db.js'
 
 // Load env vars
 dotenv.config({ path: './config/config.env' })
+
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // Connect to Atlas
 connectDB()
@@ -21,6 +28,9 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 app.use(express.json())
+app.use(express.static(path.join(__dirname, 'public')))
+// File uploading
+app.use(fileupload())
 
 // Mount Routers
 app.use('/api/v1/bootcamps', bootcampRouter)
