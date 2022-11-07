@@ -8,12 +8,19 @@ import asyncHandler from 'express-async-handler'
 import Bootcamp from '../models/bootcampModel.js'
 import ErrorResponse from '../utils/errorResponse.js'
 import geocoder from '../utils/geocoder.js'
+import APIFeatures from '../utils/apiFeatures.js'
 
 // @desc    Get all bootcamps
 // @route   GET /api/v1/bootcamps
 // @access  Public
 export const getBootcamps = asyncHandler(async (req, res, next) => {
-  const bootcamps = await Bootcamp.find({}).populate('courses')
+  const features = new APIFeatures(Bootcamp.find(), req.query)
+    .filter()
+    .selectFields()
+    .paginate()
+    .populate({ path: 'courses', select: 'title' })
+
+  const bootcamps = await features.query
   res.status(200).json({
     success: true,
     count: bootcamps.length,

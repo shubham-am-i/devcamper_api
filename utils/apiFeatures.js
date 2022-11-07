@@ -1,4 +1,4 @@
-export class APIFeatures {
+class APIFeatures {
   constructor(query, queryString) {
     this.query = query
     this.queryString = queryString
@@ -6,12 +6,12 @@ export class APIFeatures {
 
   filter() {
     const queryObj = { ...this.queryString }
-    const excludedFields = ['page', 'sort', 'limit', 'fields']
-    excludedFields.forEach(el => delete queryObj[el])
+    const excludedFields = ['page', 'sort', 'limit', 'select']
+    excludedFields.forEach((el) => delete queryObj[el])
 
     // 1B) Advanced filtering
     let queryStr = JSON.stringify(queryObj)
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`)
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
 
     this.query = this.query.find(JSON.parse(queryStr))
 
@@ -29,9 +29,9 @@ export class APIFeatures {
     return this
   }
 
-  limitFields() {
-    if (this.queryString.fields) {
-      const fields = this.queryString.fields.split(',').join(' ')
+  selectFields() {
+    if (this.queryString.select) {
+      const fields = this.queryString.select.split(',').join(' ')
       this.query = this.query.select(fields)
     } else {
       this.query = this.query.select('-__v')
@@ -49,4 +49,11 @@ export class APIFeatures {
 
     return this
   }
+
+  populate(object) {
+    this.query = this.query.populate(object)
+    return this
+  }
 }
+
+export default APIFeatures

@@ -3,24 +3,25 @@ import asyncHandler from 'express-async-handler'
 import ErrorResponse from '../utils/errorResponse.js'
 import Course from '../models/courseModel.js'
 import Bootcamp from '../models/bootcampModel.js'
+import APIFeatures from '../utils/apiFeatures.js'
 
 // @desc    Get courses
 // @route   GET /api/v1/courses
 // @route   GET /api/v1/bootcamps/:bootcampId/courses
 // @access  Public
 export const getCourses = asyncHandler(async (req, res, next) => {
-  let query
+  let courses
 
   if (req.params.bootcampId) {
-    query = Course.find({ bootcamp: req.params.bootcampId })
+    courses = await Course.find({ bootcamp: req.params.bootcampId })
   } else {
-    query = Course.find().populate({
-      path: 'bootcamp',
-      select: 'name description',
-    })
-  }
+    const features = new APIFeatures(Course.find(), req.query)
+      .filter()
+      .selectFields()
+      .populate({ path: 'bootcamp', select: 'name description' })
 
-  const courses = await query
+    courses = await features.query
+  }
 
   res.status(200).json({
     success: true,
