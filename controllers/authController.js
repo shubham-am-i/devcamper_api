@@ -1,7 +1,21 @@
 import asyncHandler from 'express-async-handler'
+import User from '../models/userModel.js'
 // @desc    Register user
 // @route   GET /api/v1/auth/register
 // @access  Public
 export const register = asyncHandler(async (req, res, next) => {
-  res.status(200).json({ success: true })
+  const { name, email, password, role } = req.body
+
+  // Create user
+  const user = await User.create({
+    name,
+    email,
+    password,
+    role,
+  })
+
+  res.status(200).json({
+    success: true,
+    data: user,
+  })
 })

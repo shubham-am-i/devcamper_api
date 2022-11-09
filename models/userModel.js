@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
 
 const UserSchema = new mongoose.Schema(
   {
@@ -33,5 +34,11 @@ const UserSchema = new mongoose.Schema(
     timestamps: true,
   }
 )
+
+// Encrypt password using bcrypt
+UserSchema.pre('save', async function (next) {
+  const salt = await bcrypt.genSalt(10)
+  this.password = await bcrypt.hash(this.password, salt)
+})
 
 export default new mongoose.model('User', UserSchema)
