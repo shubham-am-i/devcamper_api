@@ -41,6 +41,15 @@ export const isAuthorize = (req, res, next) => {
     next()
   } else {
     res.status(401)
-    throw new Error('Not authorized as an admin | publisher')
+    throw new Error('Not authorized with a user role')
+  }
+}
+
+export const authorize = (req, res, next) => {
+  if ((req.user && req.user.role === 'user') || req.user.role === 'admin') {
+    next()
+  } else {
+    res.status(401)
+    throw new Error('Not authorized as a publisher')
   }
 }
