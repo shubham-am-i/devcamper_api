@@ -22,6 +22,7 @@ connectDB() // Connect to Atlas
 import bootcampRouter from './routes/bootcampRoutes.js'
 import courseRouter from './routes/courseRoutes.js'
 import authRouter from './routes/authRoute.js'
+import reviewRouter from './routes/reviewRoutes.js'
 const app = express()
 
 // Middlewares
@@ -37,6 +38,7 @@ app.use(cookieParser()) //cookie parser
 app.use('/api/v1/bootcamps', bootcampRouter)
 app.use('/api/v1/courses', courseRouter)
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/reviews', reviewRouter)
 
 app.use(errorHandler)
 
