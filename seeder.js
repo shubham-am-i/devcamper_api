@@ -15,6 +15,7 @@ const __dirname = path.dirname(__filename)
 // Load models
 import Bootcamp from './models/bootcampModel.js'
 import Course from './models/courseModel.js'
+import User from './models/userModel.js'
 
 // connect to DB
 mongoose.connect(process.env.MONGO_URI, {
@@ -29,11 +30,15 @@ const bootcamps = JSON.parse(
 const courses = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/courses.json`, 'utf-8')
 )
+const users = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/users.json`, 'utf-8')
+)
 
 const importData = async () => {
   try {
     await Bootcamp.create(bootcamps)
     await Course.create(courses)
+    await User.create(users)
 
     console.log('Data Imported!'.green.inverse)
     process.exit()
@@ -47,6 +52,7 @@ const destroyData = async () => {
   try {
     await Bootcamp.deleteMany() //if we don't pass anything, it will delete everything
     await Course.deleteMany()
+    await User.deleteMany()
 
     console.log('Data Destroyed!'.red.inverse)
     process.exit()
