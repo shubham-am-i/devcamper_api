@@ -36,6 +36,6 @@ npm run i
 
 ## Demo
 
-Extensive documentation with examples [here](https://https://documenter.getpostman.com/view/20805847/2s8YerNY1c)
+Extensive documentation with examples [here](https://documenter.getpostman.com/view/20805847/2s8YerNY1c)
 
 - Version: 1.0.0
