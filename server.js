@@ -5,6 +5,7 @@ import colors from 'colors'
 import fileupload from 'express-fileupload'
 import cookieParser from 'cookie-parser'
 import mongoSanitize from 'express-mongo-sanitize'
+import cors from 'cors'
 // local import
 import errorHandler from './middleware/error.js'
 import connectDB from './config/db.js'
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(fileupload()) // File uploading
 app.use(cookieParser()) //cookie parser
 app.use(mongoSanitize()) // prevent mongo operator injection
+app.use(cors()) // enable cors
 
 // Mount Routers
 app.use('/api/v1/bootcamps', bootcampRouter)
