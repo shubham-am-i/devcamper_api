@@ -4,7 +4,7 @@ import colors from 'colors'
 import dotenv from 'dotenv'
 
 // Load env vars
-dotenv.config({ path: './config/config.env' })
+dotenv.config()
 
 import path from 'path'
 import { fileURLToPath } from 'url'

@@ -5,6 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+    "setup-production": "npm install",
     "start": "node server",
     "dev": "nodemon server",
     "i": "node seeder",

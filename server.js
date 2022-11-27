@@ -11,7 +11,7 @@ import errorHandler from './middleware/error.js'
 import connectDB from './config/db.js'
 
 // Load env vars
-dotenv.config({ path: './config/config.env' })
+dotenv.config()
 
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -44,6 +44,10 @@ app.use('/api/v1/bootcamps', bootcampRouter)
 app.use('/api/v1/courses', courseRouter)
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/reviews', reviewRouter)
+
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, './public', 'index.html'))
+// })
 
 app.use(errorHandler)
 
