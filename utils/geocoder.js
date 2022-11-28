@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-dotenv.config({ path: './config/config.env' })
+dotenv.config()
 
 import NodeGeocoder from 'node-geocoder'
 

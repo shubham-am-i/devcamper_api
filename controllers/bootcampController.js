@@ -142,14 +142,13 @@ export const getBootcampsInRadius = asyncHandler(async (req, res, next) => {
   const loc = await geocoder.geocode(zipcode)
   const lat = loc[0].latitude
   const lng = loc[0].longitude
-
   // Calculate radius using radians
   // Divide dist by radius of Earth
   // Earth Radius = 6,378 km / 3,963 miles
-  const radius = distance / 3963
+  const radius = distance / 6378
 
   const bootcamps = await Bootcamp.find({
-    location: { $geoWithin: { $centerSphere: [[lat, lng], radius] } },
+    location: { $geoWithin: { $centerSphere: [[lng, lat], radius] } },
   })
 
   res.status(200).json({

@@ -65,7 +65,11 @@ const BootcampSchema = mongoose.Schema(
         'Mobile Development',
         'UI/UX',
         'Data Science',
-        'Business',
+        'Business Analysis And Digital Marketing',
+        'Software and System Design',
+        'Cloud Computing and Devops',
+        'QA Automation And Testing',
+        'Cyber Security',
         'Other',
       ],
     },
@@ -88,10 +92,6 @@ const BootcampSchema = mongoose.Schema(
       default: false,
     },
     jobGuarantee: {
-      type: Boolean,
-      default: false,
-    },
-    acceptGi: {
       type: Boolean,
       default: false,
     },
